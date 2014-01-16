@@ -1,0 +1,59 @@
+.myBody {
+    margin: 0;
+}
+
+.wrapper {
+	min-width: 400px;
+	max-width: 800px;
+	margin: 0 auto;
+	border: solid gray 1px;
+}
+
+.header {
+	background-color: black;
+	height: 25px;
+	color: grey;
+	font-weight: bold;
+	border: solid thin;
+	padding-left: 30px;
+	padding-top: 5px;
+	vertical-align: middle;
+}
+
+.title {
+    background-color: white;
+    height: 50px;
+    text-align: center;
+    padding-top: 10px;
+    color: navy;
+    font-size: 24px;
+}
+
+.content {
+	background-color: white;
+	height: 500px;
+	padding-left: 30px;
+	color: gray;
+}
+
+.content .show {
+    cursor: pointer;
+    height: 100px;
+    border-bottom: solid 1px grey;
+}
+
+.content td {
+    color: gray;
+}
+
+.content td a{
+    color: gray;
+}
+
+.account_column {
+    width: 200px
+}
+
+.number_column {
+    width: 70px;
+}
