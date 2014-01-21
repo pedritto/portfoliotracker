@@ -8,6 +8,9 @@ GET     /                           controllers.Application.index
 # Funds service produces JSON
 GET     /funds                      controllers.Application.funds
 
+# Funds service produces JSON
+GET     /fundgen                      controllers.Application.generateFunds
+
 # Inflation service produces JSON
 GET     /inflation                  controllers.Application.inflation
 
