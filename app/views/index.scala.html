@@ -1,9 +1,24 @@
 <header xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 	<link rel='stylesheet' type='text/css' href="@routes.Assets.at("stylesheets/main.css")">
     <script type='text/javascript' src="@routes.Assets.at("javascripts/my.js")"></script>
-    <script type='text/javascript' src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")"></script>
+    <script type='text/javascript' src="@routes.Assets.at("javascripts/jquery-1.10.2.min.js")"></script>
 </header>
 <body class="myBody">
+
+        <script type="text/javascript">
+        	fillFunds = function(fundList) {
+        		var content = document.getElementById('fundList');
+        		for (i = 0; i < fundList.length; i++) {
+        			var fundElement = document.createElement('DIV');
+        			fundElement.innerHTML = fundList[i].name;
+        			content.appendChild(fundElement);
+        		}
+        		
+        	}
+        	
+			loadFunds(fillFunds);
+        </script>
+
      <div class="wrapper">
         <div class="header">
             Portfolio Tracker
@@ -11,26 +26,13 @@
         <div class="title">
             My Portfolio
         </div>
-        <div class="content">
-            <div class="show" onclick="myJson()">Show my funds</div>
-            <div class="list" id="fundi">
-                <script>
-                    function myJson() {
-                            $.getJSON('/funds', function(data) {
-                            funding(data);
-                        });
-                    };
-                </script>
-                <table id="funds_table">
-                    <tr>
-                        <td class="account_column">Account</td>
-                        <td class="number_column">Qty</td>
-                        <td class="number_column">Price</td>
-                        <td class="number_column">Value</td>
-                    </tr>
+        <div class="content" id="fundList">
+        
+       		
+       
 
-                </table>
             </div>
         </div>
-     </div>
+     
+
 </body>

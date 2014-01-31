@@ -36,3 +36,18 @@ funding = function(funds) {
         }
     }
 }
+
+
+loadFunds = function(fill) {
+	
+    $.ajax({
+        url: '/funds',
+        success: function(data, textStatus, jqXHR) {
+        	fill(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          window.alert(textStatus);
+        }
+    });
+	
+}

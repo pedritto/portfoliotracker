@@ -52,8 +52,8 @@ object Application extends Controller {
     val json = inTransaction {
     	val fundFall = new Fund(1L, "HU123", "Highest Fall Ever", "USD")
     	val result = TrackerSchema.funds insert fundFall;
-    	//val fundMagic = new Fund(2L, "HU99999", "Magical Gain Ltd.", "EUR")
-    	//val result = TrackerSchema.funds insert fundMagic;
+    	val fundMagic = new Fund(2L, "HU99999", "Magical Gain Ltd.", "EUR")
+    	TrackerSchema.funds insert fundMagic;
     	generate(result);
     }
     Ok(json).as(JSON);
