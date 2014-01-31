@@ -13,19 +13,16 @@ object Application extends Controller {
   }
 
   def funds = Action {
+    // val funds = OldFund.findAll;
+    //val json = generate(funds);
     
-    /*
-    val funds = OldFund.findAll;
-    val json = generate(funds);
-     */
     val json = inTransaction {
         val fundata = from(TrackerSchema.funds)(s => 
           select(s)
         )
         generate(fundata);
     }
-    
-
+ 
     Ok(json).as(JSON);
   }
   
@@ -53,10 +50,10 @@ object Application extends Controller {
   
   def generateFunds = Action {
     val json = inTransaction {
-    	//val fundFall = new Fund(1L, "HU123", "Highest Fall Ever", "USD")
-    	val fundMagic = new Fund(2L, "HU99999", "Magical Gain Ltd.", "EUR")
-    	//TrackerSchema.funds insert fundFall;
-    	val result = TrackerSchema.funds insert fundMagic;
+    	val fundFall = new Fund(1L, "HU123", "Highest Fall Ever", "USD")
+    	val result = TrackerSchema.funds insert fundFall;
+    	//val fundMagic = new Fund(2L, "HU99999", "Magical Gain Ltd.", "EUR")
+    	//val result = TrackerSchema.funds insert fundMagic;
     	generate(result);
     }
     Ok(json).as(JSON);

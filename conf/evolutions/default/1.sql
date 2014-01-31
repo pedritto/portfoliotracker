@@ -23,28 +23,26 @@ create table FUND (
 );
 
 create table INVESTMENT (
-  id    bigint DEFAULT nextval('s_fund_id'),
+  id    bigint DEFAULT nextval('s_investment_id'),
   fundId  bigint,
   investorId bigint,
   date date,
-  quantity: long
+  quantity long
 );
 
 create table INVESTOR (
-  id    bigint DEFAULT nextval('s_fund_id'),
+  id    bigint DEFAULT nextval('s_investor_id'),
   name varchar(128),
   fee long,
   chargeperiod varchar(128)
 );
 
 create table RATE (
-  id    bigint DEFAULT nextval('s_fund_id'),
+  id    bigint DEFAULT nextval('s_rate_id'),
   fundId  bigint,
   date date,
-  price: long
+  price long
 );
-
-
 
 # --- !Downs
 
@@ -59,3 +57,6 @@ drop sequence s_fund_id;
 drop sequence s_investment_id;
 drop sequence s_investor_id;
 drop sequence s_rate_id;
+
+
+
