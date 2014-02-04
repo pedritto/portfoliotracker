@@ -17,8 +17,27 @@ object Application extends Controller {
     //val json = generate(funds);
     
     val json = inTransaction {
-        val fundata = from(TrackerSchema.funds)(s => 
-          select(s)
+/*        val fundata = 
+          from(TrackerSchema.funds, TrackerSchema.investors, TrackerSchema.investments )(
+            (fund, investor, investment) => 
+            where(fund.id === investment.fundId and investor.id === investment.investorId)
+            select(fund.name, investor.name)
+        )
+        generate(fundata);
+      
+        val fundata = 
+          from(TrackerSchema.investors, TrackerSchema.investments )(
+            (investor, investment) => 
+            where(investor.id === investment.investorId)
+            select(investment.id, investor.name)
+        )
+        generate(fundata);
+        * 
+        */
+        
+        val fundata = 
+          from(TrackerSchema.funds )(
+            (s) => select(s)
         )
         generate(fundata);
     }
@@ -27,14 +46,6 @@ object Application extends Controller {
   }
   
   def inflation = Action {
-    
-    /*
-    val s = inTransaction {
-    	val inflation = new Inflation(2L, "EUR", 2013, 2L);
-    	val result = TrackerSchema.inflations insert inflation;
-    	generate(result);
-    }
-   */
 
     val json = inTransaction {
         val infData = from(TrackerSchema.inflations)(s => 
@@ -49,15 +60,37 @@ object Application extends Controller {
   }
   
   def generateFunds = Action {
-    val json = inTransaction {
-    	val fundFall = new Fund(1L, "HU123", "Highest Fall Ever", "USD")
-    	val result = TrackerSchema.funds insert fundFall;
-    	val fundMagic = new Fund(2L, "HU99999", "Magical Gain Ltd.", "EUR")
-    	TrackerSchema.funds insert fundMagic;
-    	generate(result);
-    }
-    Ok(json).as(JSON);
 
+	    	//fundMagic.investment.associate(magicInvestment);
+
+	    val InvestmentJson = inTransaction {
+	      
+	    	val dummyId = 0L;
+      
+    		val today = new java.util.Date;
+    		
+    		TrackerSchema.inflations insert new Inflation(dummyId, "HUF", 2013, 0.03F);
+    		
+    		val investor = TrackerSchema.investors insert new Investor(dummyId, "Brokker", 100L, "YEAR");
+    		
+    		val fundFall = TrackerSchema.funds insert new Fund(dummyId, "HU123", "Highest Fall Ever", "USD");
+    		val fundMagic = TrackerSchema.funds insert new Fund(dummyId, "HU99999", "Magical Gain Ltd.", "EUR");
+    		
+    		TrackerSchema.rates insert new Rate(dummyId, fundFall.id, today, 100F);
+    		TrackerSchema.rates insert new Rate(dummyId, fundMagic.id, today, 200F);
+    		
+	    	val fallInvestment = new Investment(dummyId, "John Dow", fundFall.id, investor.id, today, 0.015F, 15F);
+	    	val magicInvestment = new Investment(dummyId, "John Dow", fundMagic.id, investor.id, today, 0.015F, 13F);
+	    	
+	    	TrackerSchema.investments insert magicInvestment;
+	    	val result = TrackerSchema.investments insert fallInvestment;
+
+	    	generate(result);
+	    }
+	      
+	    Ok(InvestmentJson).as(JSON);
   }
+  
+
 
 }

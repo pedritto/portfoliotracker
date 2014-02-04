@@ -5,20 +5,6 @@
 </header>
 <body class="myBody">
 
-        <script type="text/javascript">
-        	fillFunds = function(fundList) {
-        		var content = document.getElementById('fundList');
-        		for (i = 0; i < fundList.length; i++) {
-        			var fundElement = document.createElement('DIV');
-        			fundElement.innerHTML = fundList[i].name;
-        			content.appendChild(fundElement);
-        		}
-        		
-        	}
-        	
-			loadFunds(fillFunds);
-        </script>
-
      <div class="wrapper">
         <div class="header">
             Portfolio Tracker
@@ -28,11 +14,10 @@
         </div>
         <div class="content" id="fundList">
         
-       		
-       
+       		<script type="text/javascript">
+       			initFunds();
+       		</script>
 
-            </div>
         </div>
-     
-
+    </div>
 </body>

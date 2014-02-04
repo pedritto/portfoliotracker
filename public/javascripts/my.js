@@ -1,3 +1,47 @@
+initFunds = function() {
+	loadFunds('/funds', fillFunds);
+}
+
+loadFunds = function(uri, callback) {
+	
+    $.ajax({
+        url: uri,
+        success: function(data, textStatus, jqXHR) {
+        	callback(data);
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+          window.alert(textStatus);
+        }
+    });
+	
+}
+
+fillFunds = function(fundList) {
+	var content = document.getElementById('fundList');
+	if (!fundList || !content) {
+		return;
+	}
+	
+	for (i = 0; i < fundList.length; i++) {
+		var fundElement = createFundItem(fundList[i]);
+		content.appendChild(fundElement);
+	}
+}
+
+createFundItem = function(fundData) {
+	var fundElement = document.createElement('DIV');
+	
+	var fundName = document.createElement('SPAN');
+	fundName.innerHTML = fundData.name;
+	fundElement.appendChild(fundName);
+	
+	var fundName = document.createElement('SPAN');
+	fundName.innerHTML = fundData.name;
+	fundElement.appendChild(fundName);
+	
+	return fundElement;
+}
+
 funding = function(funds) {
 
     //var content = document.getElementById('fundi');
@@ -35,19 +79,4 @@ funding = function(funds) {
             table.appendChild(row);
         }
     }
-}
-
-
-loadFunds = function(fill) {
-	
-    $.ajax({
-        url: '/funds',
-        success: function(data, textStatus, jqXHR) {
-        	fill(data);
-        },
-        error: function(jqXHR, textStatus, errorThrown) {
-          window.alert(textStatus);
-        }
-    });
-	
 }
