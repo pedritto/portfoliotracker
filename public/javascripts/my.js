@@ -29,29 +29,30 @@ fillFunds = function(fundList) {
 }
 
 createFundItem = function(fundData) {
+	
 	var fundElement = document.createElement('DIV');
 	
-	var fundName = document.createElement('SPAN');
-	fundName.innerHTML = fundData.name;
-	fundElement.appendChild(fundName);
+	var percent = 100;
 	
-	var fundName = document.createElement('SPAN');
-	fundName.innerHTML = fundData.investor;
-	fundElement.appendChild(fundName);
-	
-	var qty = document.createElement('SPAN');
-	qty.innerHTML = fundData.quantity;
-	fundElement.appendChild(qty);
-	
-	var value = document.createElement('SPAN');
-	value.innerHTML = fundData.value;
-	fundElement.appendChild(value);
-	
-	var currency = document.createElement('SPAN');
-	currency.innerHTML = fundData.currency;
-	fundElement.appendChild(currency);
+	createSpan(fundElement, fundData.name);
+	createSpan(fundElement, fundData.investor);
+	createSpan(fundElement, fundData.buyIn);
+	createSpan(fundElement, fundData.fee * percent, '%');
+	createSpan(fundElement, fundData.value);
+	createSpan(fundElement, fundData.currency);
+	createSpan(fundElement, fundData.rate * percent, '%');
+	createSpan(fundElement, fundData.netRate * percent, '%');
 	
 	return fundElement;
+}
+
+createSpan = function (parent, data, postfix) {
+	if (!postfix) {
+		postfix = '';
+	}
+	var element = document.createElement('SPAN');
+	element.innerHTML = data + postfix;
+	parent.appendChild(element);
 }
 
 funding = function(funds) {

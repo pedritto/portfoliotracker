@@ -21,12 +21,21 @@ object Application extends Controller {
     		from(TrackerSchema.funds, TrackerSchema.investors, TrackerSchema.investments, TrackerSchema.rates)(
     			(fund, investor, investment, rate) => 
     		where(fund.id === investment.fundId and investor.id === investment.investorId and fund.id === rate.fundId)
-            select(fund.name, investor.name, investment.quantity, rate.price, fund.currency)
+            select(fund.name, investor.name, investment.quantity, investment.buyinRate, rate.price, fund.currency)
         )
         
         var investments = collection.mutable.Set[InvestmentDto]();
         fundata.foreach(investment => (
-        		investments add new InvestmentDto(investment._1, investment._2, investment._3, investment._3 * investment._4, investment._5)
+        		investments add new InvestmentDto(
+        		    investment._1, 
+        		    investment._2,
+        		    investment._3 * investment._5, 
+        		    investment._4,
+        		    investment._3 * investment._5, 
+        		    investment._6,
+        		    1,
+        		    1
+        		)
         	)
         );
         generate(investments);
