@@ -36,8 +36,20 @@ createFundItem = function(fundData) {
 	fundElement.appendChild(fundName);
 	
 	var fundName = document.createElement('SPAN');
-	fundName.innerHTML = fundData.name;
+	fundName.innerHTML = fundData.investor;
 	fundElement.appendChild(fundName);
+	
+	var qty = document.createElement('SPAN');
+	qty.innerHTML = fundData.quantity;
+	fundElement.appendChild(qty);
+	
+	var value = document.createElement('SPAN');
+	value.innerHTML = fundData.value;
+	fundElement.appendChild(value);
+	
+	var currency = document.createElement('SPAN');
+	currency.innerHTML = fundData.currency;
+	fundElement.appendChild(currency);
 	
 	return fundElement;
 }

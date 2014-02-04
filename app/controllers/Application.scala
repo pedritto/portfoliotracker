@@ -5,6 +5,7 @@ import com.codahale.jerkson.Json._
 import models._
 import org.squeryl._
 import org.squeryl.PrimitiveTypeMode._
+import dtos._
 
 object Application extends Controller {
 
@@ -13,35 +14,23 @@ object Application extends Controller {
   }
 
   def funds = Action {
-    // val funds = OldFund.findAll;
-    //val json = generate(funds);
     
     val json = inTransaction {
-/*        val fundata = 
-          from(TrackerSchema.funds, TrackerSchema.investors, TrackerSchema.investments )(
-            (fund, investor, investment) => 
-            where(fund.id === investment.fundId and investor.id === investment.investorId)
-            select(fund.name, investor.name)
-        )
-        generate(fundata);
       
-        val fundata = 
-          from(TrackerSchema.investors, TrackerSchema.investments )(
-            (investor, investment) => 
-            where(investor.id === investment.investorId)
-            select(investment.id, investor.name)
+    	val fundata = 
+    		from(TrackerSchema.funds, TrackerSchema.investors, TrackerSchema.investments, TrackerSchema.rates)(
+    			(fund, investor, investment, rate) => 
+    		where(fund.id === investment.fundId and investor.id === investment.investorId and fund.id === rate.fundId)
+            select(fund.name, investor.name, investment.quantity, rate.price, fund.currency)
         )
-        generate(fundata);
-        * 
-        */
         
-        val fundata = 
-          from(TrackerSchema.funds )(
-            (s) => select(s)
-        )
-        generate(fundata);
+        var investments = collection.mutable.Set[InvestmentDto]();
+        fundata.foreach(investment => (
+        		investments add new InvestmentDto(investment._1, investment._2, investment._3, investment._3 * investment._4, investment._5)
+        	)
+        );
+        generate(investments);
     }
- 
     Ok(json).as(JSON);
   }
   
@@ -65,7 +54,7 @@ object Application extends Controller {
 
 	    val InvestmentJson = inTransaction {
 	      
-	    	val dummyId = 0L;
+	    	val dummyId: Long = 0L;
       
     		val today = new java.util.Date;
     		
