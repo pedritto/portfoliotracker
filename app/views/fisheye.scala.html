@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+    <script type='text/javascript' src="@routes.Assets.at("javascripts/jquery-1.10.2.min.js")"></script>
+    <script type='text/javascript' src="@routes.Assets.at("javascripts/jquery.jqdock.min.js")"></script>
+</head>
+<body>
+<script>
+	var opts =
+	  // horizontal Dock with images expanding downwards in the vertical axis...
+	  { align: 'top'
+	  // set the maximum minor axis (vertical) image dimension to 48px
+	  , size: 48
+	  // add labels..
+	  , labels: true
+	  // swap the GIF extension for PNG extension for the larger image...
+	  , source: function(i){ return this.src.replace(/gif$/,'png'); }
+	  };
+	$(document).ready(function(){
+		  jQuery('#menu').jqdock(opts);
+	});
+</script>
+
+<div id='menu' data-jqdock-align='top' data-jqdock-size='60' data-jqdock-labels='true' data-jqdock-fade-in='800'>
+  <img src="@routes.Assets.at("images/favicon.png")" alt='image1.png' title='' />
+  <img src="@routes.Assets.at("images/favicon.png")" alt='image2.png' title='' />
+  <img src="@routes.Assets.at("images/favicon.png")" alt='image3.png' title='' />
+  <img src="@routes.Assets.at("images/favicon.png")" alt='image4.png' title='' />
+</div>
+
+  
+</body>
+</html>
