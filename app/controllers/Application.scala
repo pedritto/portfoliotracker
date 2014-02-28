@@ -29,9 +29,9 @@ object Application extends Controller {
         		investments add new InvestmentDto(
         		    investment._1, 
         		    investment._2,
-        		    investment._3 * investment._5, 
+        		    BigDecimal(investment._3 * investment._5).setScale(0, BigDecimal.RoundingMode.HALF_UP).toFloat,
         		    investment._4,
-        		    investment._3 * investment._5, 
+        		    BigDecimal(investment._3 * investment._5).setScale(0, BigDecimal.RoundingMode.HALF_UP).toFloat,
         		    investment._6,
         		    1,
         		    1

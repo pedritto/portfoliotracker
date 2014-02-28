@@ -34,23 +34,24 @@ createFundItem = function(fundData) {
 	
 	var percent = 100;
 	
-	createSpan(fundElement, fundData.name);
-	createSpan(fundElement, fundData.investor);
-	createSpan(fundElement, fundData.buyIn);
-	createSpan(fundElement, fundData.fee * percent, '%');
-	createSpan(fundElement, fundData.value);
-	createSpan(fundElement, fundData.currency);
-	createSpan(fundElement, fundData.rate * percent, '%');
-	createSpan(fundElement, fundData.netRate * percent, '%');
+	createSpan(fundElement, fundData.name, 'fundName');
+	createSpan(fundElement, fundData.investor, 'investor');
+	createSpan(fundElement, fundData.buyIn, 'buyinPrice');
+	createSpan(fundElement, fundData.fee * percent, 'buyinFee', '%');
+	createSpan(fundElement, fundData.value, 'value');
+	createSpan(fundElement, fundData.currency, 'currency');
+	createSpan(fundElement, fundData.rate * percent, 'rate', '%');
+	createSpan(fundElement, fundData.netRate * percent, 'netRate', '%');
 	
 	return fundElement;
 }
 
-createSpan = function (parent, data, postfix) {
+createSpan = function (parent, data, className, postfix) {
 	if (!postfix) {
 		postfix = '';
 	}
-	var element = document.createElement('SPAN');
+	var element = document.createElement('DIV');
+	element.className = className;
 	element.innerHTML = data + postfix;
 	parent.appendChild(element);
 }

@@ -11,20 +11,44 @@
 
 .header {
 	background-color: black;
-	height: 25px;
-	color: grey;
-	font-weight: bold;
+	height: 36px;
 	border: solid thin;
+}
+
+.appName {
+	font-size: 20px;
+	display: inline-block;
+	vertical-align: middle;
+	color: #EEEEEE;
+	font-weight: bold;
 	padding-left: 30px;
 	padding-top: 5px;
+	width: 280px;
+}
+
+#menu {
+	display: inline-block;
 	vertical-align: middle;
+	padding-top: 5px;
+}
+
+.user {
+	font-size: 12px;
+	color: #EEEEEE;
+	display: inline-block;
+	padding-top: 10px;
+	padding-right: 10px;
+	float: right;
 }
 
 .title {
+	font-weight: bold;
+	text-decoration: underline;
     background-color: white;
     height: 50px;
-    text-align: center;
+    text-align: left;
     padding-top: 10px;
+    padding-left: 30px;
     color: navy;
     font-size: 24px;
 }
@@ -34,6 +58,61 @@
 	height: 300px;
 	padding-left: 30px;
 	color: gray;
+}
+
+.fundName {
+	display: inline-block;
+	width: 300px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.investor {
+	display: inline-block;
+	width: 50px;
+	font-size: 14px;
+}
+
+.buyinPrice {
+	display: inline-block;
+	width: 80px;
+	font-size: 12px;
+	text-align: right;
+}
+
+.buyinFee {
+	display: inline-block;
+	width: 50px;
+	font-size: 12px;
+	text-align: right;
+}
+
+.value {
+	display: inline-block;
+	width: 80px;
+	font-size: 12px;
+	text-align: right;
+}
+
+.currency {
+	display: inline-block;
+	width: 50px;
+	font-size: 12px;
+	text-align: center;
+}
+
+.rate {
+	display: inline-block;
+	width: 30px;
+	font-size: 12px;
+	text-align: right;
+}
+
+.netRate {
+	display: inline-block;
+	width: 40px;
+	font-size: 12px;
+	text-align: right;
 }
 
 .content .show {
@@ -60,4 +139,8 @@
 
 .number_column {
     width: 70px;
+}
+
+.jqDockLabelText {
+    color: gray;
 }
