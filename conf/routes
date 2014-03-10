@@ -14,6 +14,9 @@ GET     /fundgen                    controllers.Application.generateFunds
 # Inflation service produces JSON
 GET     /inflation                  controllers.Application.inflation
 
+# Load rates from file and produces JSON
+GET 	/rateImport					controllers.RateController.loadRates(fundId: Long)
+
 #GET 	/testPortfolio				controllers.PortfolioController.generatePortfolio
 
 # Map static resources from the /public folder to the /assets URL path

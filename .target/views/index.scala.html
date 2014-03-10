@@ -1,36 +1,58 @@
 <header xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 	<link rel='stylesheet' type='text/css' href="@routes.Assets.at("stylesheets/main.css")">
     <script type='text/javascript' src="@routes.Assets.at("javascripts/my.js")"></script>
-    <script type='text/javascript' src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")"></script>
+    <script type='text/javascript' src="@routes.Assets.at("javascripts/jquery-1.10.2.min.js")"></script>
+    <script type='text/javascript' src="@routes.Assets.at("javascripts/jquery.jqdock.min.js")"></script>
 </header>
+
 <body class="myBody">
+	<script type="text/javascript">
+		var opts =
+		  // horizontal Dock with images expanding downwards in the vertical axis...
+		  { align: 'top'
+		  // set the maximum minor axis (vertical) image dimension to 48px
+		  , size: 28
+		  // add labels..
+		  , labels: false
+		  , inactivity: 1000
+		  // swap the GIF extension for PNG extension for the larger image...
+		  , source: function(i){ return this.src.replace(/gif$/,'png'); }
+		  };
+		$(document).ready(function(){
+			  jQuery('#menu').jqdock(opts);
+			  initFunds();
+		});
+	</script>
      <div class="wrapper">
-        <div class="header">
-            Portfolio Tracker
+     	<div class="header">
+	        <div class="appName">
+	            Portfolio Tracker
+	        </div>
+            <div id='menu'>
+            	<a href='/fundgen'>
+			  		<img src="@routes.Assets.at("images/k-menu-edit-icon.png")" alt='image2.png' title='Edit' />
+			  	</a>
+			  	<a href='/testPortfolio'>
+			  		<img src="@routes.Assets.at("images/Start-Menu-Run-icon.png")" alt='image3.png' title='Settings' />
+			  	</a>
+			  	<a href='/funds'>
+			  		<img src="@routes.Assets.at("images/Start-Menu-Search-icon.png")" alt='image4.png' title='Search' />
+			  	</a>
+			  	<a href='/rateImport?fundId=3'>
+			  		<img src="@routes.Assets.at("images/MetroUI-Other-Power-icon.png")" alt='image1.png' title='Logout' />
+			  	</a>
+			</div>
+			<div class="user">
+				John Dow
+			</div>
         </div>
+        
         <div class="title">
             My Portfolio
         </div>
-        <div class="content">
-            <div class="show" onclick="myJson()">Show my funds</div>
-            <div class="list" id="fundi">
-                <script>
-                    function myJson() {
-                            $.getJSON('/funds', function(data) {
-                            funding(data);
-                        });
-                    };
-                </script>
-                <table id="funds_table">
-                    <tr>
-                        <td class="account_column">Account</td>
-                        <td class="number_column">Qty</td>
-                        <td class="number_column">Price</td>
-                        <td class="number_column">Value</td>
-                    </tr>
+        <div class="content" id="fundList">
 
-                </table>
-            </div>
+
         </div>
-     </div>
+    </div>
 </body>
