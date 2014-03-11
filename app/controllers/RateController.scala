@@ -27,18 +27,19 @@ object RateController extends Controller {
 	  ).as(JSON);
   }
   
-  // TODO: Persist rates
-  def uploadRates(fundId: Long) = Action {
+  // TODO: check if rate exists
+  def saveRates(fundId: Long) = Action {
     
-     val rates = inTransaction {
-    	 CsvReader
-    	 	.readLines(FILE_NAME)
-    	 	.map(
-    	 	    line => RateParser.parse(line, SEPARATOR, fundId)
-    	 	);
-     }
-    
-     Ok(views.html.index());
+	CsvReader.readLines(FILE_NAME)
+    		 .map(
+    		     line => RateParser.parse(line, SEPARATOR, fundId)
+    		 )
+    		 .foreach(rate => 
+    		 	inTransaction {
+    		 		generate(TrackerSchema.rates insert rate);
+				}
+		     );
+    Ok(views.html.index())
   }
 
 }

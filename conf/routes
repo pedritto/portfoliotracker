@@ -15,7 +15,7 @@ GET     /fundgen                    controllers.Application.generateFunds
 GET     /inflation                  controllers.Application.inflation
 
 # Load rates from file and produces JSON
-GET 	/rateImport					controllers.RateController.loadRates(fundId: Long)
+GET 	/rateImport					controllers.RateController.saveRates(fundId: Long)
 
 #GET 	/testPortfolio				controllers.PortfolioController.generatePortfolio
 
