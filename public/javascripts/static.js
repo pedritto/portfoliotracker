@@ -1,0 +1,3 @@
+loadStatic = function() {
+    alert('loading...');
+}
