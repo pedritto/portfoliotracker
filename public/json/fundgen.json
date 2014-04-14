@@ -1,0 +1,1 @@
+{"id":6,"user":"John Dow","fundId":5,"investorId":3,"date":1397503827861,"buyinRate":0.015,"quantity":15.0,"fund":[{"id":5,"code":"HU123","name":"Highest Fall Ever","currency":"USD","rate":[{"id":5,"fundId":5,"date":"2014-04-14","price":100.0}]}],"investor":[{"id":3,"name":"Brokker","fee":100,"chargePeriod":"YEAR"}]}
