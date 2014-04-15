@@ -2,8 +2,8 @@ initFunds = function(isPlay) {
     if(!!isPlay) {
 	    loadFunds('/funds', fillFunds);
     } else {
-        $.getJson('json/funds.json', function(json) {
-                fillfunds(json);
+        $.getJSON('json/funds.json', function(json) {
+                fillFunds(json);
             }
         );
     }
