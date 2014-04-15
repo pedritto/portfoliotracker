@@ -1,5 +1,12 @@
-initFunds = function() {
-	loadFunds('/funds', fillFunds);
+initFunds = function(isPlay) {
+    if(!!isPlay) {
+	    loadFunds('/funds', fillFunds);
+    } else {
+        $.getJson('json/funds.json', function(json) {
+                fillfunds(json);
+            }
+        );
+    }
 }
 
 loadFunds = function(uri, callback) {
