@@ -1,10 +1,11 @@
-<header xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 	<link rel='stylesheet' type='text/css' href="stylesheets/main.css">
-    <script type='text/javascript' src="javascripts/my.js"></script>
+    <script type='text/javascript' src="javascripts/staticDataStore.js"></script>
+        <script type='text/javascript' src="javascripts/my.js"></script>
     <script type='text/javascript' src="javascripts/static.js"></script>
     <script type='text/javascript' src="javascripts/jquery-1.10.2.min.js"></script>
     <script type='text/javascript' src="javascripts/jquery.jqdock.min.js"></script> 
-</header>
+</head>
 
 <body class="myBody">
 	<script type="text/javascript">
@@ -24,7 +25,7 @@
 		        //loadStatic();
 		    }
 			  jQuery('#menu').jqdock(opts);
-			  initFunds(false);
+			  initFunds(true);
 		});
 	</script>
      <div class="wrapper">

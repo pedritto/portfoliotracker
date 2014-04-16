@@ -1,11 +1,9 @@
-initFunds = function(isPlay) {
-    if(!!isPlay) {
-	    loadFunds('/funds', fillFunds);
+
+initFunds = function(isStatic) {
+    if(!!isStatic) {
+    	fillFunds(JSON.parse(staticFunds));;
     } else {
-        $.getJSON('json/funds.json', function(json) {
-                fillFunds(json);
-            }
-        );
+    	loadFunds('/funds', fillFunds);
     }
 }
 
